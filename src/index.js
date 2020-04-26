@@ -1,21 +1,18 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from "./components/Home";
-//simport Login from "./components/Login";
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
-
+import Information from './components/Information';
+import Home from './components/Home';
 // const Home = lazy(() => import('./components/Home'));
-const Login = lazy(() => import('./components/Login'));
+//const Information = lazy(() => import('./components/Information'));
 
 ReactDOM.render(
-  <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+  <HashRouter>
     <Switch>
       <Route exact path="/" render={({ history }) => (<Home history={history} />)} />
-      <Route exact path="/login" render={({ history }) => (<Login history={history} />)} />
+      <Route exact path="/information" render={({ history }) => (<Information history={history} />)} />
     </Switch>
-    </Suspense>
-  </Router>,
+  </HashRouter>,
   document.getElementById('root')
 );
