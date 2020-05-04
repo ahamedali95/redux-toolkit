@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-
-import Information from './components/Information';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
 import Home from './components/Home';
-// const Home = lazy(() => import('./components/Home'));
-//const Information = lazy(() => import('./components/Information'));
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <HashRouter>
-    <Switch>
-      <Route exact path="/" render={({ history }) => (<Home history={history} />)} />
-      <Route exact path="/information" render={({ history }) => (<Information history={history} />)} />
-    </Switch>
-  </HashRouter>,
+  <Provider store={store}>
+    <Home />
+  </Provider>,
   document.getElementById('root')
 );
